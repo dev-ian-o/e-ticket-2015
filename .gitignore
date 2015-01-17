@@ -7,16 +7,16 @@ composer.lock
 .DS_Store
 Thumbs.db
 !public
-!public/assets
+!public/assets/
 public/assets/*
-!public/barcodes
+!public/barcodes/
 public/barcodes/*
 
-!public/images
+!public/images/
 public/images/*
 !public/tickets/
 public/tickets/*
-!public/users_images
+!public/users_images/
 public/users_images/*
 
 
