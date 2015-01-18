@@ -13,7 +13,7 @@ Route::get('/', function()
 	while($foldersLn >= 0){
 
 		if(!file_exists( public_path().'\\'.$folders[$foldersLn]))
-			File::makeDirectory(public_path().'\\tickets\\'.$folders[$foldersLn]);
+			File::makeDirectory(public_path().'\\'.$folders[$foldersLn]);
 		$foldersLn--;		
 	}
 
