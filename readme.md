@@ -1,25 +1,20 @@
-## Laravel PHP Framework
+## E-ticket 2015
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+**E-ticket** is a web application that helps the events organizer to generate their tickets with 
+barcodes to have smooth flow of registration and accounting of payments.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+To install the application:
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+1. Create the database, name it as *eticketdb*
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+2. Type and enter these in your terminal/cmd:
 
-## Official Documentation
+`git clone https://github.com/dev-ian-o/e-ticket-2015.git`
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+`bower install`
 
-### Contributing To Laravel
+`php artisan migrate`
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+`php artisan db:seed`
 
-### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
