@@ -9,12 +9,12 @@ To install the application:
 
 2. Type and enter these in your terminal/cmd:
 
-`git clone https://github.com/dev-ian-o/e-ticket-2015.git`
+		`git clone https://github.com/dev-ian-o/e-ticket-2015.git`
 
-`bower install`
+		`bower install`
 
-`php artisan migrate`
+		`php artisan migrate`
 
-`php artisan db:seed`
+		`php artisan db:seed`
 
 

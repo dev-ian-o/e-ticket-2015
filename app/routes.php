@@ -6,8 +6,21 @@ include_once 'routes-api.php';
 
 
 Route::get('/', function()
-{
+{	
+	$folders = array('images','barcodes','tickets');
+	$foldersLn = sizeof($folders) - 1;
+
+	while($foldersLn >= 0){
+
+		if(!file_exists( public_path().'\\'.$folders[$foldersLn]))
+			File::makeDirectory(public_path().'\\tickets\\'.$folders[$foldersLn]);
+		$foldersLn--;		
+	}
+
 	return View::make('index');
+
+
+
 });
 
 Route::get('/generate', function()
