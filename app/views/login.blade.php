@@ -15,7 +15,9 @@
         <!-- EOF CSS INCLUDE -->                                    
     </head>
     <body>
-        
+        @if($errors->any())
+            <script type="text/javascript">alert('{{$errors->first()}}');</script>
+        @endif
         <div class="login-container">
         
             <div class="login-box animated fadeInDown">

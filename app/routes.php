@@ -135,16 +135,11 @@ Route::get('/sample', function()
 
 Route::get('/login', function()
 {
-	return View::make('login');
+	if(Auth::check())
+        return View::make('admin.index');
+    else
+        return View::make('login');
 });
-
-Route::post('/api/v1/auth', function()
-{
-	$data = Input::get();
-	print_r($data);
-});
-
-
 
 function saveBarcode($code){
 	$img ='data:image/png;base64,' . DNS1D::getBarcodePNG($code, "CODABAR");
@@ -162,8 +157,28 @@ function saveTicket($code,$name,$folder){
 	$path = public_path().'\\tickets\\'.$folder.'\\'.$name.'.svg';
 	File::put($path, $code);		
 
-
 }
+
+Route::post('/api/v1/auth', function()
+{
+	$userdata = array(
+        'email' => Input::get('email'),
+        'password' => Input::get('password')
+    );
+
+    if(Auth::attempt($userdata)) 
+        return Redirect::to('admin');
+    else
+        return Redirect::back()->withErrors(['Invalid username or password']);
+});
+
+Route::match(array('GET', 'POST'), '/logout', function()
+{
+	Auth::logout();
+    return Redirect::to('login');
+});
+
+
 
 // function saveTicket($code,$name){
 // 	$img = str_replace('data:image/png;base64,', '', $code);

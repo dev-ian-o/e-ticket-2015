@@ -13,15 +13,14 @@ Route::group(array('prefix' => 'api/v1'), function()
 
 Route::group(array('prefix' => 'admin'), function()
 {
-	Route::get('/', 			function(){ return View::make('admin.index'); });
-	Route::get('/home', 		function(){ return View::make('admin.home'); });
-	Route::get('/students', 	function(){ return View::make('admin.students'); });
-	Route::get('/tickets', 		function(){ return View::make('admin.tickets'); });
-	Route::get('/events', 		function(){ return View::make('admin.events'); });
-	Route::get('/viewport', 	function(){ return View::make('admin.viewport'); });
-	Route::get('/registration', function(){ return View::make('admin.registration'); });
-	Route::get('/accounting', 	function(){ return View::make('admin.accounting'); });
-	
+	Route::get('/', 			function(){ return View::make('admin.index'); 	})->before('auth');
+	Route::get('/home', 		function(){ return View::make('admin.home'); 	})->before('auth');
+	Route::get('/students', 	function(){ return View::make('admin.students'); })->before('auth');
+	Route::get('/tickets', 		function(){ return View::make('admin.tickets'); })->before('auth');
+	Route::get('/events', 		function(){ return View::make('admin.events'); })->before('auth');
+	Route::get('/viewport', 	function(){ return View::make('admin.viewport'); })->before('auth');
+	Route::get('/registration', function(){ return View::make('admin.registration'); })->before('auth');
+	Route::get('/accounting', 	function(){ return View::make('admin.accounting'); })->before('auth');
 });
 
 Route::group(array('prefix' => 'ui-admin'), function()
