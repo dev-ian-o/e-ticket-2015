@@ -10,8 +10,9 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
         
+
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="{{ URL::to('admin-assets/css/theme-default.css') }}"/>
         <!-- EOF CSS INCLUDE -->               
     </head>
     <body>
@@ -28,11 +29,11 @@
                     </li>
                     <li class="xn-profile">
                         <a href="#" class="profile-mini">
-                            <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                            <img src="{{ URL::to('admin-assets/assets/images/users/avatar.jpg') }}" alt="John Doe"/>
                         </a>
                         <div class="profile">
                             <div class="profile-image">
-                                <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                                <img src="{{ URL::to('admin-assets/assets/images/users/avatar.jpg') }}" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
                                 <div class="profile-data-name">John Doe</div>
@@ -235,25 +236,25 @@
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
                                 <a href="#" class="list-group-item">
                                     <div class="list-group-status status-online"></div>
-                                    <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
+                                    <img src="{{ URL::to('admin-assets/assets/images/users/user2.jpg') }}" class="pull-left" alt="John Doe"/>
                                     <span class="contacts-title">John Doe</span>
                                     <p>Praesent placerat tellus id augue condimentum</p>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
+                                    <img src="{{ URL::to('admin-assets/assets/images/users/user.jpg') }}" class="pull-left" alt="Dmitry Ivaniuk"/>
                                     <span class="contacts-title">Dmitry Ivaniuk</span>
                                     <p>Donec risus sapien, sagittis et magna quis</p>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
+                                    <img src="{{ URL::to('admin-assets/assets/images/users/user3.jpg') }}" class="pull-left" alt="Nadia Ali"/>
                                     <span class="contacts-title">Nadia Ali</span>
                                     <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <div class="list-group-status status-offline"></div>
-                                    <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
+                                    <img src="{{ URL::to('admin-assets/assets/images/users/user6.jpg') }}" class="pull-left" alt="Darth Vader"/>
                                     <span class="contacts-title">Darth Vader</span>
                                     <p>I want my money back!</p>
                                 </a>
@@ -763,32 +764,31 @@
         <!-- END MESSAGE BOX-->
 
         <!-- START PRELOADS -->
-        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+        <audio id="audio-alert" src="{{ URL::to('admin-assets/audio/alert.mp3') }}" preload="auto"></audio>
+        <audio id="audio-fail" src="{{ URL::to('admin-assets/audio/fail.mp3') }}" preload="auto"></audio>
         <!-- END PRELOADS -->                    
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>                
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery-ui.min') }}.js"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap.min.js') }}"></script>                
         <!-- END PLUGINS -->
 
         <!-- THIS PAGE PLUGINS -->
-        <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
-        <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type='text/javascript' src="{{ URL::to('admin-assets/js/plugins/icheck/icheck.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
         
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-timepicker.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-colorpicker.js') }}"></script>
         <!-- END THIS PAGE PLUGINS -->       
 
         <!-- START TEMPLATE -->
-        <script type="text/javascript" src="js/settings.js"></script>
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/settings.js') }}"></script>
         
-        <script type="text/javascript" src="js/plugins.js"></script>        
-        <script type="text/javascript" src="js/actions.js"></script>        
-        <!-- END TEMPLATE -->
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins.js') }}"></script>        
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/actions.js') }}"></script> 
     <!-- END SCRIPTS -->         
         
     </body>

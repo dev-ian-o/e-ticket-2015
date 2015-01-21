@@ -11,9 +11,16 @@ Route::group(array('prefix' => 'api/v1'), function()
 
 
 
-Route::get('admin', function()
+Route::group(array('prefix' => 'admin'), function()
 {
+	 Route::get('/', function(){
+	 	return View::make('admin.index');
+	 });
 
-	return View::make('admin.index');
+	 Route::get('/', function(){
+	 	return View::make('admin.ui-buttons');
+	 });
+
+
     
 });
