@@ -133,6 +133,16 @@ Route::get('/sample', function()
 });
 
 
+Route::get('/login', function()
+{
+	return View::make('login');
+});
+
+Route::post('/api/v1/auth', function()
+{
+	$data = Input::get();
+	print_r($data);
+});
 
 
 
