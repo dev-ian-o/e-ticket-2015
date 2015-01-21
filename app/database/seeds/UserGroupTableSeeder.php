@@ -17,5 +17,9 @@ class UserGroupTableSeeder extends Seeder {
             'id' => '2',
             'groupname' => 'accounting',
         ));
+        UserGroup::create(array(
+            'id' => '3',
+            'groupname' => 'registration',
+        ));
      }
 }
