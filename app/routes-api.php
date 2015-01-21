@@ -8,3 +8,12 @@ Route::group(array('prefix' => 'api/v1'), function()
     Route::resource('designs', 'DesignController');
     
 });
+
+
+
+Route::get('admin', function()
+{
+
+	return View::make('admin.index');
+    
+});

@@ -37,11 +37,11 @@ Route::get('/generate', function()
 		$zero = '';
 		$codeLn = strlen( (string) $start );
 		while($codeLn < $length){$zero .= '0'; $codeLn++;}
-		$code = $zero . $start;
-		$arrCodes[$a++] = $code;
-		saveBarcode($code);
-		$start++;
-	}
+			$code = $zero . $start;
+			$arrCodes[$a++] = $code;
+			saveBarcode($code);
+			$start++;
+		}
 
 });
 
