@@ -19,6 +19,8 @@
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-timepicker.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-colorpicker.js') }}"></script>
+        
+        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>    
         <!-- END THIS PAGE PLUGINS -->       
 
         <!-- START TEMPLATE -->

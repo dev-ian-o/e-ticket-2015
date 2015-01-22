@@ -13,8 +13,11 @@ Route::group(array('prefix' => 'api/v1'), function()
 
 Route::group(array('prefix' => 'admin'), function()
 {
+
 	Route::get('/', 			function(){ return View::make('admin.index'); })->before('auth');
 	Route::get('/home', 		function(){ return View::make('admin.home'); })->before('auth');
+	Route::get('/users', 		function(){ return View::make('admin.users'); })->before('auth');
+	Route::get('/user-group', 		function(){ return View::make('admin.user-group'); })->before('auth');
 	Route::get('/students', 	function(){ return View::make('admin.students'); })->before('auth');
 	Route::get('/tickets', 		function(){ return View::make('admin.tickets'); })->before('auth');
 	Route::get('/events', 		function(){ return View::make('admin.events'); })->before('auth');
