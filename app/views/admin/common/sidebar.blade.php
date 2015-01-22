@@ -38,16 +38,16 @@
                 <a href="/admin/user-group"><span class="fa fa-users"></span> <span class="xn-text">Users Group</span></a>
             </li>                    
             <li>
-                <a href="#"><span class="fa fa-university"></span> <span class="xn-text">Students</span></a>
+                <a href="/admin/students"><span class="fa fa-university"></span> <span class="xn-text">Students</span></a>
             </li>                    
             <li>
-                <a href="#"><span class="fa fa-ticket"></span> <span class="xn-text">Tickets</span></a>
+                <a href="/admin/tickets"><span class="fa fa-ticket"></span> <span class="xn-text">Tickets</span></a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Users Group</span></a>
-            </li>                    
+                <a href="/admin/viewport"><span class="fa fa-ticket"></span> <span class="xn-text">Design</span></a>
+            </li>
             <li>
-                <a href="#"><span class="fa fa-calendar"></span> <span class="xn-text">Events</span></a>
+                <a href="/admin/events"><span class="fa fa-calendar"></span> <span class="xn-text">Events</span></a>
             </li>                    
             @endif;
 
@@ -55,11 +55,11 @@
             
             @if($group_name === "admin" || $group_name === "accounting" )
             <li>
-                <a href="#"><span class="fa fa-superscript"></span> <span class="xn-text">Accounting</span></a>
+                <a href="/admin/accounting"><span class="fa fa-superscript"></span> <span class="xn-text">Accounting</span></a>
             </li>                    
             @endif
             <li>
-                <a href="#"><span class="fa fa-barcode"></span> <span class="xn-text">Registration</span></a>
+                <a href="/admin/registration"><span class="fa fa-barcode"></span> <span class="xn-text">Registration</span></a>
             </li>                    
         </ul>
         <!-- END X-NAVIGATION -->

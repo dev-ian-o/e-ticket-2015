@@ -35,13 +35,14 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		User::create(array(
-            'username' => Request::get('username'),
+            'username' => Request::get('email'),
             'password' => Hash::make(Request::get('password')),
             'email'    => Request::get('email'),
             'user_group_id' => 1
         ));
 		
-		return Response::json(array('success'=> true));
+		// return Response::json(array('success'=> true));
+		return Redirect::to('admin/users');
 	}
 
 
@@ -66,14 +67,15 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		User::create(array(
-            'username' => Request::get('username'),
-            'password' => Hash::make(Request::get('password')),
-            'email'    => Request::get('email'),
-            'user_group_id' => 1
-        ));
+		$arr = [
+			'user_group_id' => Request::get('user_group_id'),
+			'username' => Request::get('email'),
+			'email' => Request::get('email'),
+			'password' => Hash::make(Request::get('password')),
+		];
+		$user = User::where('id',Request::get('id'))->update($arr);
+		return Redirect::to('admin/users');
 		
-		return Response::json(array('success'=> true));
 	}
 
 
@@ -86,6 +88,7 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+		return Redirect::to('admin/users');
 	}
 
 
