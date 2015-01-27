@@ -18,7 +18,7 @@
         
         <!-- PAGE TITLE -->
         <div class="page-title">                    
-            <h2><span class="fa fa-users"></span> User Group</h2>
+            <h2><span class="fa fa-university"></span> Students</h2>
         </div>
         <!-- END PAGE TITLE -->                
         
@@ -31,10 +31,10 @@
                                                     <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">                                
-                                    <h3 class="panel-title">User Group</h3>
+                                    <h3 class="panel-title">Users</h3>
                                     <ul class="panel-controls">
-                                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                                        <li><a href="#" class="panel-default"><span class="fa fa-plus"></span></a></li>
                                     </ul>                                
                                 </div>
                                 <div class="panel-body">
@@ -42,15 +42,31 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Group Name</th>
+                                                <th>Last Name</th>
+                                                <th>First Name</th>
+                                                <th>Year</th>
+                                                <th>Course</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php $a = 1;?>
-                                        @foreach(UserGroup::get() as $key => $value)
+                                        @foreach(Student::where('deleted_at','=',null)->get() as $key => $value)
                                             <tr>
                                                 <td>{{ $a++ }}</td>
-                                                <td>{{ $value->groupname }}</td>
+                                                <td>{{ $value->lastname }}</td>
+                                                <td>{{ $value->firstname }}</td>
+                                                <td>{{ $value->year }}</td>
+                                                <td>{{ $value->course }}</td>
+                                                <td>
+                                                    <input type="hidden" name="id" value="{{ $value->id }}">
+                                                    <input type="hidden" name="lastname" value="{{ $value->lastname }}">
+                                                    <input type="hidden" name="user_group_id" value="{{ $value->user_group_id }}">
+                                                    <input type="hidden" name="year" value="{{ $value->year }}">
+                                                    <input type="hidden" name="course" value="{{ $value->course }}">
+                                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

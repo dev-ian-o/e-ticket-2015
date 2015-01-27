@@ -1,18 +1,18 @@
-@include('admin.common.header')
+@include('ui-admin.common.header')
 <body>
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
     
     <!-- START PAGE SIDEBAR -->
-    @include('admin.common.sidebar')
+    @include('ui-admin.common.sidebar')
     <!-- END PAGE SIDEBAR -->
     
     <!-- PAGE CONTENT -->
     <div class="page-content">
     
-    @include('admin.common.navbar')    
+    @include('ui-admin.common.navbar')    
                            
-    @include('admin.common.breadcrumbs')
+    @include('ui-admin.common.breadcrumbs')
         
 
         
@@ -437,9 +437,9 @@
 <!-- END PAGE CONTAINER --> 
 
 
-@include('admin.common.logout')
+@include('ui-admin.common.logout')
 
 </body>
-@include('admin.common.footer')
+@include('ui-admin.common.footer')
 
 

@@ -45,6 +45,7 @@
                                 <div class="panel-heading">                                
                                     <h3 class="panel-title">Design</h3>
                                     <ul class="panel-controls">
+                                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                     </ul>                                
                                 </div>
@@ -60,7 +61,7 @@
                                     <img src="/images/barcode.png" id="barcode-image" class="hide">
                                     <div >
 
-                                            <span class="fa fa-spinner fa-4x fa-spin loader"></span>
+                                            <!-- <span class="fa fa-spinner fa-4x fa-spin loader"></span> -->
                                             <form enctype="multipart/form-data">
                                                 <input type="file" name="file" id="imgLoader">
                                                 <input type="hidden" name="id" value="1">
@@ -93,10 +94,8 @@
 </body>
 @include('admin.common.footer')
 
-
-    <script type="text/javascript" src="/assets/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/fabricjs/dist/fabric.min.js"></script>
-    <script type="text/javascript" src="/js/loader.js"></script>
+    
      <script type="text/javascript">
         $('document').ready(function(){
             canvas = new fabric.Canvas('viewport-ticket');

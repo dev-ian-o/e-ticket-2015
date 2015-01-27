@@ -33,7 +33,7 @@
                                 <div class="panel-heading">                                
                                     <h3 class="panel-title">Users</h3>
                                     <ul class="panel-controls">
-
+                                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                         <li><a href="#" class="panel-default" data-toggle="modal" data-target="#modal-add"><span class="fa fa-plus"></span></a></li>
 

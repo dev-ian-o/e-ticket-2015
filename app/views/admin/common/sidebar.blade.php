@@ -23,10 +23,10 @@
                         <div class="profile-data-name">{{ ucfirst($group_name) }}</div>
                         <div class="profile-data-title">{{ Auth::user()->email }}</div>
                     </div>
-                    <div class="profile-controls">
+<!--                     <div class="profile-controls">
                         <a href="#" class="profile-control-left"><span class="fa fa-info"></span></a>
                         <a href="#" class="profile-control-right"><span class="fa fa-envelope"></span></a>
-                    </div>
+                    </div> -->
                 </div>                                                                        
             </li>
             @if($group_name === "admin")
@@ -44,7 +44,7 @@
                 <a href="/admin/tickets"><span class="fa fa-ticket"></span> <span class="xn-text">Tickets</span></a>
             </li>
             <li>
-                <a href="/admin/viewport"><span class="fa fa-ticket"></span> <span class="xn-text">Design</span></a>
+                <a href="/admin/viewport"><span class="fa fa-tint"></span> <span class="xn-text">Design</span></a>
             </li>
             <li>
                 <a href="/admin/events"><span class="fa fa-calendar"></span> <span class="xn-text">Events</span></a>
@@ -55,7 +55,7 @@
             
             @if($group_name === "admin" || $group_name === "accounting" )
             <li>
-                <a href="/admin/accounting"><span class="fa fa-superscript"></span> <span class="xn-text">Accounting</span></a>
+                <a href="/admin/accounting"><span class="fa fa-rouble"></span> <span class="xn-text">Accounting</span></a>
             </li>                    
             @endif
             <li>

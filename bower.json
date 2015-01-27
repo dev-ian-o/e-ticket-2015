@@ -18,6 +18,7 @@
     "bootstrap": "~3.3.1",
     "fontawesome": "~4.2.0",
     "bootstrap-validator": "~0.6.0",
-    "fabricjs": "https://github.com/kangax/fabric.js.git#~1.4.13"
+    "fabricjs": "https://github.com/kangax/fabric.js.git#~1.4.13",
+    "restangular":"https://github.com/mgonto/restangular.git#~1.4.0"
   }
 }

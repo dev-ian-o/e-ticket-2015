@@ -29,6 +29,6 @@ Route::group(array('prefix' => 'admin'), function()
 Route::group(array('prefix' => 'ui-admin'), function()
 {
 	 Route::get('/', function(){ return View::make('ui-admin.index'); });
-	 Route::get('/', function(){ return View::make('ui-admin.ui-buttons');});
+	 // Route::get('/', function(){ return View::make('ui-admin.ui-buttons');});
 
 });
