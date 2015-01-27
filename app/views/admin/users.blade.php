@@ -1,5 +1,5 @@
 @include('admin.common.header')
-<body>
+<body ng-controller="usersController">
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
     
@@ -50,21 +50,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $a = 1;?>
-                                        @foreach(User::where('deleted_at',null)->get() as $key => $value)
-                                            <tr>
-                                                <td>{{ $a++ }}</td>
-                                                <td>{{ $value->email }}</td>
-                                                <td>{{ UserGroup::where('id',$value->user_group_id)->pluck('groupname') }}</td>
+                                            <tr ng-repeat="value in data">
+                                                <td>@{{ value.id }}</td>
+                                                <td>@{{ value.email}}</td>
+                                                <td>@{{ value.groupname}}</td>
                                                 <td class="action-buttons">
-                                                    <input type="hidden" name="id" value="{{ $value->id }}">
-                                                    <input type="hidden" name="email" value="{{ $value->email }}">
-                                                    <input type="hidden" name="user_group_id" value="{{ $value->user_group_id }}">
+                                                    <input type="hidden" name="id" value="@{{ value.id }}">
+                                                    <input type="hidden" name="email" value="@{{ value.email}}">
+                                                    <input type="hidden" name="user_group_id" value="@{{ value.user_group_id}}">
                                                     <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-pencil"></i></button>
                                                     <button class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete"><i class="fa fa-trash-o"></i></button>
                                                 </td>
                                             </tr>
-                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -84,11 +81,24 @@
 
 @include('admin.common.logout')
 
-</body>
 @include('admin.common.footer')
-
 @include('admin.modals.users.add')
 @include('admin.modals.users.edit')
 @include('admin.modals.users.delete')
 
-        
+</body>
+
+
+<!-- app.js -->
+
+
+<script>
+function usersController($scope,$http) {
+
+
+    $http.get("/api/v1/users")
+    .success(function(response) {$scope.data = response;});
+
+
+}
+</script>

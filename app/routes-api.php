@@ -21,7 +21,7 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('/students', 	function(){ return View::make('admin.students'); })->before('auth');
 	Route::get('/tickets', 		function(){ return View::make('admin.tickets'); })->before('auth');
 	Route::get('/events', 		function(){ return View::make('admin.events'); })->before('auth');
-	Route::get('/viewport', 	function(){ return View::make('admin.viewport'); })->before('auth');
+	Route::get('/design', 	function(){ return View::make('admin.design'); })->before('auth');
 	Route::get('/registration', function(){ return View::make('admin.registration'); })->before('auth');
 	Route::get('/accounting', 	function(){ return View::make('admin.accounting'); })->before('auth');
 });

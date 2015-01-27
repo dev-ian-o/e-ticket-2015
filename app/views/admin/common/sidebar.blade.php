@@ -44,7 +44,7 @@
                 <a href="/admin/tickets"><span class="fa fa-ticket"></span> <span class="xn-text">Tickets</span></a>
             </li>
             <li>
-                <a href="/admin/viewport"><span class="fa fa-tint"></span> <span class="xn-text">Design</span></a>
+                <a href="/admin/design"><span class="fa fa-tint"></span> <span class="xn-text">Design</span></a>
             </li>
             <li>
                 <a href="/admin/events"><span class="fa fa-calendar"></span> <span class="xn-text">Events</span></a>

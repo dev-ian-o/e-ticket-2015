@@ -7,6 +7,8 @@
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
+        
+        <!-- // <script type='text/javascript' src="{{ URL::to('assets/angular/angular.min.js') }}"></script> -->
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery-ui.min') }}.js"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap.min.js') }}"></script>                
@@ -17,23 +19,11 @@
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
         
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-timepicker.min.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap-colorpicker.js') }}"></script>
         
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script> 
-
-        <script type='text/javascript' src='/admin-assets/js/plugins/icheck/icheck.min.js'></script>
-        <script type="text/javascript" src="/admin-assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
         
-        <script type='text/javascript' src='/admin-assets/js/plugins/bootstrap/bootstrap-datepicker.js'></script>        
-        <script type='text/javascript' src='/admin-assets/js/plugins/bootstrap/bootstrap-select.js'></script>        
+        <script type='text/javascript' src='/admin-assets/js/plugins/bootstrap/bootstrap-select.js'></script>
 
-        <script type='text/javascript' src='/admin-assets/js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
-        <script type='text/javascript' src='/admin-assets/js/plugins/validationengine/jquery.validationEngine.js'></script>        
-
-        <script type='text/javascript' src='/admin-assets/js/plugins/jquery-validation/jquery.validate.js'></script>                
-
-        <script type='text/javascript' src='/admin-assets/js/plugins/maskedinput/jquery.maskedinput.min.js'></script>   
         <!-- END THIS PAGE PLUGINS -->       
 
         <!-- START TEMPLATE -->
@@ -41,6 +31,8 @@
         
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins.js') }}"></script>        
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/actions.js') }}"></script> 
+
+
     <!-- END SCRIPTS -->         
 
 </html>

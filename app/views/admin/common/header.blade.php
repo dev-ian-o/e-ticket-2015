@@ -13,5 +13,7 @@
 
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{ URL::to('admin-assets/css/theme-default.css') }}"/>
+
+        <script type='text/javascript' src="{{ URL::to('assets/angular/angular.min.js') }}"></script>
         <!-- EOF CSS INCLUDE -->               
     </head>

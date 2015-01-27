@@ -14,11 +14,15 @@
   ],
   "dependencies": {
     "jquery": "~2.1.3",
-    "angular": "~1.3.8",
+    "angular": "~1.2.28",
     "bootstrap": "~3.3.1",
     "fontawesome": "~4.2.0",
     "bootstrap-validator": "~0.6.0",
     "fabricjs": "https://github.com/kangax/fabric.js.git#~1.4.13",
-    "restangular":"https://github.com/mgonto/restangular.git#~1.4.0"
+    "restangular": "https://github.com/mgonto/restangular.git#~1.4.0",
+    "angular-datatables": "~0.4.0"
+  },
+  "resolutions": {
+    "angular": "~1.2.28"
   }
 }

@@ -9,7 +9,10 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::where('deleted_at', '=', NULL)->get();
+		$users = User::where('users.deleted_at', '=', NULL)
+        ->leftJoin('user_groups', 'users.user_group_id', '=', 'user_groups.id')
+        ->select('*','users.id','users.deleted_at','users.created_at','users.updated_at')
+        ->get();
 		// return Response::json(array('success'=> 'ok','data'=> $users));
 		return Response::json($users);
 	}
@@ -67,15 +70,16 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$arr = [
-			'user_group_id' => Request::get('user_group_id'),
-			'username' => Request::get('email'),
-			'email' => Request::get('email'),
-			'password' => Hash::make(Request::get('password')),
-		];
-		$user = User::where('id',Request::get('id'))->update($arr);
-		return Redirect::to('admin/users');
-		
+
+		$user = User::find(Request::get('id'));
+		$user->user_group_id = Request::get('user_group_id');
+		$user->username = Request::get('username');
+		$user->email = Request::get('email');
+		$user->password = Hash::make(Request::get('password'));
+		$user->save();
+
+		// return Redirect::to('admin/users');
+		return Response::json(array('success'=>'true'));
 	}
 
 
