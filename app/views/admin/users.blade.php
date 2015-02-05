@@ -97,7 +97,7 @@ function usersController($scope,$http) {
 
 
     $http.get("/api/v1/users")
-    .success(function(response) {$scope.data = response;});
+    .success(function(response) {$scope.data = response; console.log(response);});
 
 
 }
