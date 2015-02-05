@@ -51,7 +51,7 @@
 			arrCodes = [];
 			// pre = 'sample';
 			start = 1;
-			end = 100;
+			end = 10;
 			length = 4;
 			a = 0;
 
@@ -97,13 +97,15 @@
 				while(objLn > 0){ 
 					if(canvas.item(objLn).type === "text"){
 						canvas.item(objLn).text  = arrCodes[length];
+
 					}else if(canvas.item(objLn).type === "image"){
 						if( canvas.item(objLn).src.indexOf('user_images') == -1  )
 						{
 							canvas.item(objLn).src = 'barcodes/'+ arrCodes[length]+'.png';
-							// console.log('here');
+							console.log( 'barcodes/'+ arrCodes[length]+'.png');
 						}
 					}
+					
 					objLn--;
 				}
 				canvas.renderAll();
