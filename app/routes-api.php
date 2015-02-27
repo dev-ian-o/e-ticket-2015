@@ -6,6 +6,7 @@ Route::group(array('prefix' => 'api/v1'), function()
     Route::resource('users', 'UserController');
     Route::resource('user-groups', 'UserGroupController');
     Route::resource('designs', 'DesignController');
+    Route::resource('events', 'EventController');
     
 });
 
@@ -24,6 +25,21 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('/design', 		function(){ return View::make('admin.design'); })->before('auth');
 	Route::get('/registration', function(){ return View::make('admin.registration'); })->before('auth');
 	Route::get('/accounting', 	function(){ return View::make('admin.accounting'); })->before('auth');
+	Route::get('/add/design', 	function(){ return View::make('admin.design-add'); })->before('auth');
+	
+	Route::get('/design/{id}', 		function($id){ 
+		$design = Design::where('id','=', $id)->get();
+		if(isset($design[0]))
+			return View::make('admin.design', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/design'); 
+	})->before('auth');
+
+});
+
+Route::get('user/{id}', function($id)
+{
+    return 'User '.$id;
 });
 
 Route::group(array('prefix' => 'ui-admin'), function()

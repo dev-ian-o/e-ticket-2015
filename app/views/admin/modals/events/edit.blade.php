@@ -8,41 +8,56 @@
 
             <form role="form" id="form-edit" class="form-horizontal">
             <input type="hidden" name="id" value="">
+            <input type="hidden" name="design_id" value="">
             <div class="modal-body">                            
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Email:</label>
+                    <label class="col-md-3 control-label">Event Title:</label>
                     <div class="col-md-9">
-                        <input type="email" name="email" value="" class="validate[required] form-control"/>
-                        <span class="help-block">Required, max size = 8</span>
+                        <input type="text" name="title" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">User Group:</label>
+                    <label class="col-md-3 control-label">Event Description:</label>
                     <div class="col-md-9">
-                        <select class="form-control" name="user_group_id" value="">
-                            @foreach(UserGroup::get() as $key => $value)
-                                <option value="{{$value->id}}">{{ $value->groupname }}</option>
-                            @endforeach
-                        </select>                           
-                        <span class="help-block">Required</span>
+                        <input type="text" name="description" class="form-control"/>
                     </div>
-                </div>    
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Schedule</label>
+                    <div class="col-md-5">
+                        <div class="input-group date" id="dp-2" data-date="" data-date-format="yyyy-mm-dd">
+                            <input type="text" name="schedule" class="form-control" value="{{date('Y-m-d')}}" />
+                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Password:</label>
+                    <h4 class="col-md-12">Barcode No.</h4>
+                    <label class="col-md-3 control-label">Start No.:</label>
                     <div class="col-md-9">
-                        <input type="password" name="password" class="validate[required,minSize[5]] form-control" id="password"/>
-                        <span class="help-block">Required, min size = 5</span>
+                        <input type="number" name="barcode_no_start" class="form-control" min="0"/>
                     </div>
-                </div>    
-                                                                  
+                    <label class="col-md-3 control-label">End No.:</label>
+                    <div class="col-md-9">
+                        <input type="number" name="barcode_no_end" class="form-control" min="0"/>
+                    </div>
+                </div>
+                
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Confirm:</label>
+                    <label class="col-md-3 control-label">Ticket Price:</label>
                     <div class="col-md-9">
-                        <input type="password" class="validate[required,equals[password]] form-control"/>
-                        <span class="help-block">Required, equals Password</span>
+                        <input type="number" name="ticket_price" class="form-control" min="0"/>
                     </div>
-                </div>                                                               
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Design.:</label>
+                    <div class="col-md-9">
+                        <button type="button" class="btn btn-primary" class="choose-design" data-toggle="modal" data-target="#modal-design">Choose design</button>
+                        <span class="design-name"></span>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -60,6 +75,10 @@
         $('.datatable').dataTable(); $el = $(this.parentElement.parentElement).find("[name]");
         $($el).each(function() {
            $('#modal-edit').find('[name='+this.name+']').val(this.value);
+           if(this.name == "design_name"){
+               $('#modal-edit').find('.design-name').html(this.value);
+
+           }
         });
     });
   });

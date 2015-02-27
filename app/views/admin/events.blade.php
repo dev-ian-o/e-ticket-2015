@@ -18,10 +18,9 @@
         
         <!-- PAGE TITLE -->
         <div class="page-title">                    
-            <h2><span class="fa fa-university"></span> Students</h2>
+            <h2><span class="fa fa-calendar"></span> Events</h2>
         </div>
         <!-- END PAGE TITLE -->                
-        
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">                
         
@@ -31,10 +30,11 @@
                                                     <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">                                
-                                    <h3 class="panel-title">Users</h3>
+                                    <h3 class="panel-title">Events</h3>
                                     <ul class="panel-controls">
+                                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                        <li><a href="#" class="panel-default"><span class="fa fa-plus"></span></a></li>
+                                        <li><a href="#" class="panel-default" data-toggle="modal" data-target="#modal-add"><span class="fa fa-plus"></span></a></li>
                                     </ul>                                
                                 </div>
                                 <div class="panel-body">
@@ -42,30 +42,44 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Last Name</th>
-                                                <th>First Name</th>
-                                                <th>Year</th>
-                                                <th>Course</th>
+                                                <th>Event Title</th>
+                                                <th>Descritpion</th>
+                                                <th>Barcodes</th>
+                                                <th>Schedule</th>
+                                                <th>Ticket Price</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php $a = 1;?>
-                                        @foreach(Student::where('deleted_at','=',null)->get() as $key => $value)
+                                        <?php
+                                        $events = Event::where('events.deleted_at', '=', NULL)
+                                            ->leftJoin('designs', 'events.design_id', '=', 'designs.id')
+                                            ->select('*','events.id','events.deleted_at','events.created_at','events.updated_at')
+                                            ->get();
+                                        ?>
+                                        @foreach($events as $key => $value)
                                             <tr>
-                                                <td>{{ $a++ }}</td>
-                                                <td>{{ $value->lastname }}</td>
-                                                <td>{{ $value->firstname }}</td>
-                                                <td>{{ $value->year }}</td>
-                                                <td>{{ $value->course }}</td>
-                                                <td>
+                                                <td>{{ $a++}}</td>
+                                                <td><span data-container="body" data-toggle="tooltip" data-placement="top" title="{{ $value->title }}">{{Str::limit($value->title, 15, '...')}}</span></td>
+                                                <td><span data-container="body" data-toggle="tooltip" data-placement="top" title="{{ $value->description }}">{{Str::limit($value->description, 15, '...')}}</span></td>
+                                                <td>{{ $value->barcode_no_start.'-'.$value->barcode_no_start }}</td>
+                                                <td>{{ date_format(date_create($value->schedule), 'm-d-Y') }}</td>
+                                                <td>{{ number_format($value->ticket_price,'2') }}</td>
+                                                <td class="action-buttons">
                                                     <input type="hidden" name="id" value="{{ $value->id }}">
-                                                    <input type="hidden" name="lastname" value="{{ $value->lastname }}">
-                                                    <input type="hidden" name="user_group_id" value="{{ $value->user_group_id }}">
-                                                    <input type="hidden" name="year" value="{{ $value->year }}">
-                                                    <input type="hidden" name="course" value="{{ $value->course }}">
-                                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                                    <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                                    <input type="hidden" name="title" value="{{ $value->title }}">
+                                                    <input type="hidden" name="description" value="{{ $value->description }}">
+                                                    <input type="hidden" name="barcode_no_start" value="{{ $value->barcode_no_start }}">
+                                                    <input type="hidden" name="barcode_no_end" value="{{ $value->barcode_no_end }}">
+                                                    <input type="hidden" name="schedule" value="{{ date_format(date_create($value->schedule), 'm-d-Y') }}">
+                                                    <input type="hidden" name="ticket_price" value="{{ $value->ticket_price }}">
+                                                    <input type="hidden" name="design_name" value="{{ $value->design_name }}">
+
+                                                    <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-pencil"></i></button>
+                                                    <button class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete"><i class="fa fa-trash-o"></i></button>
+
+                                                    {{-- <button class="btn btn-success design">Add Design <i class="fa fa-plus"></i></button> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -89,6 +103,22 @@
 @include('admin.common.logout')
 
 </body>
+
 @include('admin.common.footer')
+@include('admin.modals.events.add')
+@include('admin.modals.events.edit')
+@include('admin.modals.events.delete')
+@include('admin.modals.events.designs')
+<script type="text/javascript" src="../admin-assets/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript">
+    // $("#dp-2,#dp-3,#dp-4").datepicker();
+    $(function() { 
+       $(".date").datepicker({ dateFormat: 'yyyy/mm/dd' });
+       $(".date").click(function(){$(".datepicker").css("z-index", "9999");});
+       $(".datepicker").click(function(){$(".datepicker").css("z-index", "9999");});
+    });
+</script>
+
 
 

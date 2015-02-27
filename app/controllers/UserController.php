@@ -44,8 +44,8 @@ class UserController extends \BaseController {
             'user_group_id' => 1
         ));
 		
-		// return Response::json(array('success'=> true));
-		return Redirect::to('admin/users');
+		return Response::json(array('success'=> true));
+		// return Redirect::to('admin/users');
 	}
 
 
@@ -71,15 +71,15 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 
-		$user = User::find(Request::get('id'));
+		$user = User::find($id);
 		$user->user_group_id = Request::get('user_group_id');
-		$user->username = Request::get('username');
+		$user->username = Request::get('email');
 		$user->email = Request::get('email');
 		$user->password = Hash::make(Request::get('password'));
 		$user->save();
 
 		// return Redirect::to('admin/users');
-		return Response::json(array('success'=>'true'));
+		return Response::json(array('success'=> true));
 	}
 
 
@@ -92,7 +92,12 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		//
-		return Redirect::to('admin/users');
+		$user = User::find($id);
+		$user->deleted_at = date('Y-m-d h:m:s');
+		$user->save();
+		// return Redirect::to('admin/users');
+		return Response::json(array('success'=> true));
+
 	}
 
 

@@ -7,12 +7,12 @@
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        
-        <!-- // <script type='text/javascript' src="{{ URL::to('assets/angular/angular.min.js') }}"></script> -->
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/jquery/jquery-ui.min') }}.js"></script>
         <script type="text/javascript" src="{{ URL::to('admin-assets/js/plugins/bootstrap/bootstrap.min.js') }}"></script>                
         <!-- END PLUGINS -->
+
+        <!-- end includes -->
 
         <!-- THIS PAGE PLUGINS -->
         <script type='text/javascript' src="{{ URL::to('admin-assets/js/plugins/icheck/icheck.min.js') }}"></script>
@@ -40,3 +40,6 @@
 
 
 
+<script type="text/javascript">
+     
+</script>

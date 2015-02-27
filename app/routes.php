@@ -7,7 +7,7 @@ include_once 'routes-api.php';
 
 Route::get('/', function()
 {	
-	$folders = array('images','barcodes','tickets');
+	$folders = array('images','barcodes','tickets','designs');
 	$foldersLn = sizeof($folders) - 1;
 
 	while($foldersLn >= 0){
@@ -102,13 +102,16 @@ Route::get('/tickets/save', function()
 	if(!DB::table('tickets')->where("filename",$name.'.svg')->pluck('id'))
 	{
 		Ticket::create(array(
-           'path' => public_path().'\\tickets\\'.$folder.'\\'.$name.'.svg',
+           'path' => URL::to('tickets/'.$folder.'/'.$name.'.svg'),
 			'filename' => $name.".svg",
 			'event_id' => $event_id
         ));
 	}else{
 		$ticket = Ticket::where('filename',$name.".svg")->where('event_id',$event_id)->first();
-		$ticket->path = public_path().'\\tickets\\'.$folder.'\\'.$name.'.svg';
+		// $ticket->path = public_path().'\\tickets\\'.$folder.'\\'.$name.'.svg';
+		$ticket->path = URL::to('tickets/'.$folder.'/'.$name.'.svg');
+
+		
 		$ticket->filename = $name.".svg";
 		$ticket->event_id = $event_id;
 		$ticket->save();

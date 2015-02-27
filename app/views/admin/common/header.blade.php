@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="eticketApp">
     <head>        
         <!-- META SECTION -->
         <title>E-ticket</title>            
@@ -13,7 +13,6 @@
 
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="{{ URL::to('admin-assets/css/theme-default.css') }}"/>
-
-        <script type='text/javascript' src="{{ URL::to('assets/angular/angular.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" id="theme" href="{{ URL::to('css/style.css') }}"/>
         <!-- EOF CSS INCLUDE -->               
     </head>

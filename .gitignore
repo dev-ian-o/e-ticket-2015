@@ -12,6 +12,9 @@ public/assets/*
 !public/barcodes/
 public/barcodes/*
 
+!public/designs/
+public/designs/*
+
 !public/tickets/
 public/tickets/*
 !public/users_images/
