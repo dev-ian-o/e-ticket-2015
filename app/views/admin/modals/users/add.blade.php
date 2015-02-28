@@ -71,7 +71,8 @@
                           $('#modal-add').modal('hide');
                           $('#form-add')[0].reset();
                           alert('Successfully added!');
-                          location.href = window.location.href;                    
+                          // location.href = window.location.href;                    
+                          window.location.reload();
                       }
                     },
                     complete:function(){

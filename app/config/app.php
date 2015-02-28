@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Dinesh\Barcode\BarcodeServiceProvider',
+		'Chumper\Zipper\ZipperServiceProvider'
 	),
 
 	/*
@@ -188,6 +189,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Zipper' 			=> 'Chumper\Zipper\Zipper',
 
 	),
 

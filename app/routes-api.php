@@ -7,6 +7,9 @@ Route::group(array('prefix' => 'api/v1'), function()
     Route::resource('user-groups', 'UserGroupController');
     Route::resource('designs', 'DesignController');
     Route::resource('events', 'EventController');
+    Route::resource('tickets', 'TicketController');
+    Route::resource('event_customers', 'EventCustomerController');
+    Route::resource('customers', 'CustomerController');
     
 });
 
@@ -19,8 +22,24 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('/home', 		function(){ return View::make('admin.home'); })->before('auth');
 	Route::get('/users', 		function(){ return View::make('admin.users'); })->before('auth');
 	Route::get('/user-group', 	function(){ return View::make('admin.user-group'); })->before('auth');
-	Route::get('/students', 	function(){ return View::make('admin.students'); })->before('auth');
+	// Route::get('/students', 	function(){ return View::make('admin.students'); })->before('auth');
+	Route::get('/customers', 	function(){ return View::make('admin.customers'); })->before('auth');
+	Route::get('/tickets/assign/{id}', 	function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.assign-tickets', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/events'); 
+	})->before('auth');
 	Route::get('/tickets', 		function(){ return View::make('admin.tickets'); })->before('auth');
+
+	Route::get('/tickets/{id}', 		function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.tickets', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/tickets');
+	})->before('auth');
 	Route::get('/events', 		function(){ return View::make('admin.events'); })->before('auth');
 	Route::get('/design', 		function(){ return View::make('admin.design'); })->before('auth');
 	Route::get('/registration', function(){ return View::make('admin.registration'); })->before('auth');

@@ -9,7 +9,7 @@
             <form role="form" id="form-add" class="form-horizontal">
             <div class="modal-body">
                 <div class="row text-center">
-                    <a href="/add/design" class="btn btn btn-primary">Add new design!</a>
+                    <a href="/admin/add/design" class="btn btn btn-primary">Add new design!</a>
                 </div><br>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 

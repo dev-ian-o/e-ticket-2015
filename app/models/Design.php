@@ -10,6 +10,6 @@ class Design extends Eloquent{
 	 */
 	protected $table = 'designs';
 
-	protected $fillable = array('design_name','event_id','json_object','design_path');
+	protected $fillable = array('design_name','json_object','design_path');
 
 }

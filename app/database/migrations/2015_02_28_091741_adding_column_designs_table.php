@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterDesignsTable1 extends Migration {
+class AddingColumnDesignsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -15,7 +15,10 @@ class AlterDesignsTable1 extends Migration {
 		Schema::table('designs', function(Blueprint $table)
 		{
 			$table->dropColumn('event_id');
-			$table->string('design_path');			
+			$table->softDeletes();
+			$table->string('design_path');
+			$table->binary('json_object');
+
 		});
 	}
 

@@ -62,7 +62,7 @@ class DesignController extends \BaseController {
 			$user->save();
 		}
 
-
+		// return Response::json(array('ian'=> Request::get('code')));
 		return Response::json(array('success'=> true,'id'=> DB::table('designs')->where("design_path",$design_path)->pluck('id')));
 	}
 

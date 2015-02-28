@@ -44,6 +44,8 @@
                                 <div class="panel-heading">                                
                                     <h3 class="panel-title">Add your design</h3>
                                     <ul class="panel-controls">
+                                    
+                                        <li><a href="/admin/design"><span class="fa fa-arrow-left"></span></a></li>
                                         <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                     </ul>                                
@@ -200,26 +202,22 @@
         $('#save-btn').on('click',function(e){
             e.preventDefault();
             jsonObj = encodeURI(JSON.stringify(canvas));
-            console.log(jsonObj);
-            // encodeURI(jsonObj);
-
             $.ajax({
-                type: "POST",
-                url: '/api/v1/designs?'+$('form').serialize() + '&json_object=' + jsonObj +'&code='+canvas.toSVG(),
+                url: '/api/v1/designs',
+                type: 'POST',
                 data: $('form').serialize() + '&json_object=' + jsonObj +'&code='+canvas.toSVG(),
-                processData: false,
-                contentType: false,
-                success: function(response)
-                {
-                    console.log(response);
-                    $('form').find('[name=id]').val(response.id);
+                dataType: 'json',
+                success: function(results){
+                  console.log(results);
+                  if(results.success == true)
+                  {
+                        $('form').find('[name=id]').val(results.id);
+                        alert('Successfully saved!');
+                  }
                 },
-                complete: function()
-                {
-                    // Allow form to be submited again
-                },
-                dataType: 'json'
-            });
+                complete:function(){
+                }
+          });
         });
 
         var renderWithJson = function(json){

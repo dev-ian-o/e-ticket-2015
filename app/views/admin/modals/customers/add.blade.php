@@ -7,54 +7,81 @@
             </div>
 
             <form role="form" id="form-add" class="form-horizontal">
-            <input type="hidden" name="design_id" value="">
             <div class="modal-body">                            
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Event Title:</label>
+                    <label class="col-md-3 control-label">First Name:</label>
                     <div class="col-md-9">
-                        <input type="text" name="title" class="form-control"/>
+                        <input type="text" name="firstname" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Event Description:</label>
+                    <label class="col-md-3 control-label">Last Name:</label>
                     <div class="col-md-9">
-                        <input type="text" name="description" class="form-control"/>
+                        <input type="text" name="lastname" class="form-control"/>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Schedule</label>
+                    <label class="col-md-3 control-label">Birthdate</label>
                     <div class="col-md-5">
                         <div class="input-group date" id="dp-2" data-date="{{date('Y-m-d')}}" data-date-format="yyyy-mm-dd">
-                            <input type="text" name="schedule" class="form-control" value="{{date('Y-m-d')}}" />
+                            <input type="text" name="birthdate" class="form-control" value="{{date('Y-m-d')}}" />
                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                     </div>
-                </div>
+                </div>    
 
                 <div class="form-group">
-                    <h4 class="col-md-12 text-center">Barcode No.</h4>
-                    <label class="col-md-3 control-label">Start No.:</label>
+                    <label class="col-md-3 control-label">Gender:</label>
                     <div class="col-md-9">
-                        <input type="number" name="barcode_no_start" class="form-control" min="0"/>
+                        <select class="form-control" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>   
                     </div>
-                    <label class="col-md-3 control-label">End No.:</label>
-                    <div class="col-md-9">
-                        <input type="number" name="barcode_no_end" class="form-control" min="0"/>
-                    </div>
-                </div>
-
+                </div>    
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Design.:</label>
+                    <label class="col-md-3 control-label">Year:</label>
                     <div class="col-md-9">
-                        <button type="button" class="btn btn-primary" class="choose-design" data-toggle="modal" data-target="#modal-design">Choose design</button>
-                        <span class="design-name"></span>
+                        <select class="form-control" name="year">
+                            <option value="none">none</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>   
                     </div>
-                </div>
-
+                </div> 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Ticket Price:</label>
+                    <label class="col-md-3 control-label">Section:</label>
                     <div class="col-md-9">
-                        <input type="number" name="ticket_price" class="form-control" min="0"/>
+                        <select class="form-control" name="section">
+                            <option value="none">none</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                        </select>   
+                    </div>
+                </div>    
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Course:</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="course">
+                            <option value="none">none</option>
+                            <option value="none">others</option>
+                            <option value="1">ITSM</option>
+                            <option value="2">CNA</option>
+                            <option value="3">CSAD</option>
+                        </select>   
+                    </div>
+                </div>    
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Work:</label>
+                    <div class="col-md-9">
+                        <input type="text" name="work" class="form-control"/>
                     </div>
                 </div>
             </div>
@@ -75,7 +102,7 @@
         $("#form-add").on('submit', function(e){
           e.preventDefault();
           $.ajax({
-                    url: '../api/v1/events',
+                    url: '{{URL::to("api/v1/customers")}}',
                     type: 'POST',
                     data: $(this).serialize(),
                     dataType: 'json',
@@ -97,8 +124,5 @@
               });
           return false;
         });
-        $('.choose-design').click(function(e){
-
-        })
       });
 </script>

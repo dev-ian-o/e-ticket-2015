@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="panel panel-default">
-                                                    <!-- START DEFAULT DATATABLE -->
+                            <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">                                
                                     <h3 class="panel-title">Events</h3>
@@ -63,7 +63,7 @@
                                                 <td>{{ $a++}}</td>
                                                 <td><span data-container="body" data-toggle="tooltip" data-placement="top" title="{{ $value->title }}">{{Str::limit($value->title, 15, '...')}}</span></td>
                                                 <td><span data-container="body" data-toggle="tooltip" data-placement="top" title="{{ $value->description }}">{{Str::limit($value->description, 15, '...')}}</span></td>
-                                                <td>{{ $value->barcode_no_start.'-'.$value->barcode_no_start }}</td>
+                                                <td>{{ $value->barcode_no_start.'-'.$value->barcode_no_end }}</td>
                                                 <td>{{ date_format(date_create($value->schedule), 'm-d-Y') }}</td>
                                                 <td>{{ number_format($value->ticket_price,'2') }}</td>
                                                 <td class="action-buttons">
@@ -78,6 +78,8 @@
 
                                                     <button class="btn btn-warning edit" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-pencil"></i></button>
                                                     <button class="btn btn-danger delete" data-toggle="modal" data-target="#modal-delete"><i class="fa fa-trash-o"></i></button>
+                                                    <button class="btn btn-primary generate-ticket"><i class="fa fa-ticket"></i> Generate Ticket</button>
+                                                    <a href="/admin/tickets/assign/{{$value->id}}" class="btn btn-primary">Assign Tickets</a>
 
                                                     {{-- <button class="btn btn-success design">Add Design <i class="fa fa-plus"></i></button> --}}
                                                 </td>
@@ -117,6 +119,32 @@
        $(".date").datepicker({ dateFormat: 'yyyy/mm/dd' });
        $(".date").click(function(){$(".datepicker").css("z-index", "9999");});
        $(".datepicker").click(function(){$(".datepicker").css("z-index", "9999");});
+    });
+
+    $(function() { 
+       $('.generate-ticket').click(function(){
+            $('body').append('<i class="loader fa fa-spin fa-ticket fa-4x" style="position:fixed;top:50%;left:50%;"></i>');
+
+            console.log(this);
+            id = $(this).parent().find('[name=id]').val();
+            console.log(id);
+            $.ajax({
+                    url: '../tickets/save/v2/' + id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(results){
+                      console.log(results.success == true);
+                      if(results.success == true)
+                      {
+                        alert('Successfully Generated!');
+                      }
+                    },
+                    complete:function(){
+                        $('.loader').hide();
+                    }
+            });
+            return false;
+       });
     });
 </script>
 

@@ -82,7 +82,8 @@
                           $('#modal-edit').modal('hide');
                           $('#form-edit')[0].reset();
                           alert('Successfully editted!');
-                          location.href = window.location.href;                    
+                          // location.href = window.location.href;                    
+                          window.location.reload();
                       }
                     },
                     complete:function(){

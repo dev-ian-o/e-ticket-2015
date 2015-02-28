@@ -52,7 +52,8 @@
                   {
                       $('#modal-delete').modal('hide');
                       alert('Successfully deleted!');
-                      location.href = window.location.href;                    
+                      // location.href = window.location.href;                    
+                      window.location.reload();
                   }
                 },
                 complete:function(){

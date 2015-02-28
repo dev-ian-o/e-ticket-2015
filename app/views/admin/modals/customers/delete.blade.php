@@ -10,7 +10,8 @@
             </div>
             <div class="modal-footer">
                 <form id="form-delete">
-                    <input type="hidden" name="id"> 
+                    <input type="hidden" name="id">
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <input class="btn btn-primary" type="submit" value="Delete">
 
@@ -38,7 +39,7 @@
       e.preventDefault();
       id = $(this).find('[name=id]').val();
       $.ajax({
-                url: '../api/v1/events/'+id,
+                url: '../api/v1/customers/'+id,
                 type: 'DELETE',
                 // data: $(this).serialize(),
                 dataType: 'json',

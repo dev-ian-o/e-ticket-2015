@@ -243,25 +243,23 @@
 
         $('#save-btn').on('click',function(){
             jsonObj = encodeURI(JSON.stringify(canvas));
-            console.log(jsonObj);
-            // encodeURI(jsonObj);
-
             $.ajax({
-                type: "POST",
-                url: '/api/v1/designs?'+$('form').serialize() + '&json_object=' + jsonObj +'&code='+canvas.toSVG(),
-                data: $('form').serialize() + '&json_object=' + jsonObj +'&code='+canvas.toSVG(),
-                processData: false,
-                contentType: false,
-                success: function(response)
-                {
-                    console.log(response);
-                },
-                complete: function()
-                {
-                    // Allow form to be submited again
-                },
-                dataType: 'json'
-            });
+                    url: '/api/v1/designs',
+                    type: 'POST',
+                    data: $('form').serialize() + '&json_object=' + jsonObj +'&code='+canvas.toSVG(),
+                    dataType: 'json',
+                    success: function(results){
+                      console.log(results);
+                      if(results.success == true)
+                      {
+                            alert('Successfully saved!');
+                      }
+                    },
+                    complete:function(){
+                      // $(".loader").fadeOut('slow');
+                      //loader stop here.
+                    }
+              });
         });
 
 

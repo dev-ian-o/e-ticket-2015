@@ -181,7 +181,109 @@ Route::match(array('GET', 'POST'), '/logout', function()
     return Redirect::to('login');
 });
 
+Route::get('/tickets/save/v2/{id}', function($id)
+{
+	if(Event::where('id', '=', $id)->first()){
+		$event = Event::where('events.id', '=', $id)
+	            ->leftJoin('designs', 'events.design_id', '=', 'designs.id')
+	            ->select('*','events.id','events.deleted_at','events.created_at','events.updated_at')
+	            ->first();
 
+	    // check barcodes available
+	    $barcode_dir =  public_path()."\barcodes";
+	    $barcodes = File::allFiles($barcode_dir);
+	    $barcode_no = 0;
+		foreach ($barcodes as $file)
+			$barcode_no++;
+		
+		$folder = $event->id; //based on event id
+		if(!file_exists( public_path().'\\tickets\\'.$folder))
+			File::makeDirectory(public_path().'\\tickets\\'.$folder);
+
+		if(!$barcode_no >= $event->barcode_no_end) // check if available if not then generate missing
+			generate_barcode($barcode_no += 1,$event->barcode_no_end);
+		
+
+	    $design_url = $event->design_path;
+	    $svgFile =  end((explode('/', $design_url))); //get url end
+	    $svgCode = File::get(public_path().'\\designs\\'.$svgFile); // get laman ng design svg
+
+		//edit here now svg code;
+		$dom = new DOMDocument();
+		$dom->load(public_path().'\\designs\\'.$svgFile);
+		$root = $dom->documentElement;
+
+		
+		$textDOM = $root->getElementsByTagName("text");
+		$imageDOM = $root->getElementsByTagName("image");
+
+
+		$start = $event->barcode_no_start;
+		$end = $event->barcode_no_end;
+
+		$length = strlen( (string) $end );
+		if($length < 4)
+			$length = 4;
+		$a = 0;
+
+		DB::table('tickets')->where('event_id', '=', $event->id)->delete();
+		
+		while($start <= $end){
+			$zero = '';
+			$codeLn = strlen( (string) $start );
+			while($codeLn < $length){$zero .= '0'; $codeLn++;}
+			$codeBar = $zero . $start;
+			$arrCodes[$a++] = $codeBar;
+
+			if(!file_exists( public_path().'\\barcodes\\'.$codeBar.'.svg'))
+				saveBarcode($codeBar);
+
+			foreach ($textDOM as $key => $value) {
+				$dom->getElementsByTagName("text")->item($key)->nodeValue = $codeBar; //change sample to change the text
+			}
+
+			foreach ($imageDOM as $key => $value) {
+				foreach($value->attributes as $key2 => $value2){
+					if(!strrpos($value2->nodeValue, 'users_images')){
+						if(strrpos($value2->nodeValue, 'images/barcode.png')){ // edit here
+							$value2->nodeValue = "http://localhost:8000/barcodes/".$codeBar.".png"; 
+						}
+					}
+				}
+			}
+		
+			$code = $dom->saveXML();
+			$path = public_path().'\\tickets\\'.$folder.'\\'.$codeBar.'.svg'; 
+			// print_r($path);
+			// print_r($code);
+			File::put($path, $code); 
+
+			if(!DB::table('tickets')->where("filename",$codeBar.'.svg')->pluck('id'))
+			{
+				Ticket::create(array(
+		           'path' => URL::to('tickets/'.$folder.'/'.$codeBar.'.svg'),
+					'filename' => $codeBar,
+					'event_id' => $event->id
+		        ));
+			}else{
+				// $ticket = Ticket::where('filename',$codeBar.".svg")->where('event_id',$event->id)->first();
+				// // $ticket->path = public_path().'\\tickets\\'.$folder.'\\'.$name.'.svg';
+				// $ticket->path = URL::to('tickets/'.$folder.'/'.$codeBar.'.svg');
+
+				
+				// $ticket->filename = $codeBar.".svg";
+				// $ticket->event_id = $event->id;
+				// $ticket->save();
+			}
+			$start++;
+		}
+
+		return Response::json(array('success'=>true));		
+	}
+		return Response::json(array('success'=>false));		
+
+
+});
 
 // function saveTicket($code,$name){
 // 	$img = str_replace('data:image/png;base64,', '', $code);
@@ -192,3 +294,21 @@ Route::match(array('GET', 'POST'), '/logout', function()
 
 
 // }
+
+function generate_barcode($start,$end){
+	$arrCodes = [];
+	// $start = 1;
+	// $end = 1000;
+	$length = strlen( (string) $end );
+	$a = 0;
+
+	while($start <= $end){
+		$zero = '';
+		$codeLn = strlen( (string) $start );
+		while($codeLn < $length){$zero .= '0'; $codeLn++;}
+		$code = $zero . $start;
+		$arrCodes[$a++] = $code;
+		saveBarcode($code);
+		$start++;
+	}
+}
