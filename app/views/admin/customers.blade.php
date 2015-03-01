@@ -18,7 +18,7 @@
         
         <!-- PAGE TITLE -->
         <div class="page-title">                    
-            <h2><span class="fa fa-user"></span> Customers</h2>
+            <h2><span class="fa fa-child"></span> Customers</h2>
         </div>
         <!-- END PAGE TITLE -->                
         

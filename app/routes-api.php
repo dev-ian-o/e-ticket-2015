@@ -68,6 +68,22 @@ Route::group(array('prefix' => 'admin'), function()
 			return Redirect::to('/admin/design'); 
 	})->before('auth');
 
+	Route::get('/print/{id}', 	function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.print', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/tickets'); 
+	})->before('auth');
+
+	Route::get('/report/{id}', 	function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.report', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/accounting'); 
+	})->before('auth');
+
 });
 
 Route::get('user/{id}', function($id)
@@ -80,4 +96,14 @@ Route::group(array('prefix' => 'ui-admin'), function()
 	 Route::get('/', function(){ return View::make('ui-admin.index'); });
 	 // Route::get('/', function(){ return View::make('ui-admin.ui-buttons');});
 
+});
+
+
+Route::post('register/customer', function()
+{
+	$event_customer = EventCustomer::where('event_id','=',Request::get('event_id'))
+					->where('customer_id','=',Request::get('customer_id'))->first();
+	$event_customer->account_status = "registered";
+	$event_customer->save();
+    return Response::json(array('success'=>true));
 });

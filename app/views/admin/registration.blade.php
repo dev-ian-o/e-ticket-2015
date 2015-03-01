@@ -92,7 +92,7 @@
                                 <!-- START DEFAULT DATATABLE -->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">                                
-                                        <h3 class="panel-title">Event Customers</h3>
+                                        <h3 class="panel-title">Input ticket number or use your barcode reader to input in textbox.</h3>
                                         <ul class="panel-controls">
                                             <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                             <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -102,7 +102,7 @@
                                     <div class="panel-body">
                                         <form class="form-reg">
                                             <input type="hidden" name="event_id" value="{{$id}}">
-                                            <input type="text" name="ticket_no" class="form-control barcode_no" placeholder="Input or target your barcode here!">
+                                            <input type="text" name="ticket_no" class="form-control barcode_no" placeholder="Input or target your barcode number here!">
                                         </form>
                                     </div>
                                 </div>
@@ -134,6 +134,8 @@
             </div>
 
             <form role="form" id="form-register" class="form-horizontal">
+            <input type="hidden" name="event_id" value="{{$id}}"/>
+            <input type="hidden" name="customer_id" value=""/>
             <div class="modal-body">                            
                 <div class="row">
                     Name: <h3 class="name"></h3>
@@ -159,27 +161,26 @@
     $(document).on('ready',function() {
         $("#form-register").on('submit', function(e){
           e.preventDefault();
-          // $.ajax({
-          //           url: '{{URL::to("api/v1/customers")}}',
-          //           type: 'POST',
-          //           data: $(this).serialize(),
-          //           dataType: 'json',
-          //           success: function(results){
-          //             console.log(results);
-          //             if(results.success == true)
-          //             {
-          //                 $('#modal-add').modal('hide');
-          //                 $('#form-add')[0].reset();
-          //                 alert('Successfully added!');
-          //                 // location.href = window.location.href;                    
-          //                 window.location.reload();
-          //             }
-          //           },
-          //           complete:function(){
-          //             // $(".loader").fadeOut('slow');
-          //             //loader stop here.
-          //           }
-          //     });
+          console.log(this);
+          $.ajax({
+                    url: '{{URL::to("/register/customer")}}',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(results){
+                      console.log(results);
+                      if(results.success == true)
+                      {
+                          $('#modal-info').modal('hide');
+                          alert('Successfully registered!');
+                          // location.href = window.location.href;                    
+                      }
+                    },
+                    complete:function(){
+                      // $(".loader").fadeOut('slow');
+                      //loader stop here.
+                    }
+              });
           return false;
         });
       });
@@ -201,11 +202,13 @@
                       {
                         console.log(results.customer_profile[0]);
                         customer_profile = results.customer_profile[0];
-                        succcess = results.success[0];
+                        success = results.success[0];
                         $('#modal-info').find('.name').html(customer_profile.firstname+' '+customer_profile.lastname);
                         $('#modal-info').find('.work').html(customer_profile.work);
                         $('#modal-info').find('.course').html(customer_profile.course);
+                        $('#modal-info').find('.year').html(customer_profile.year+'-'+customer_profile.section);
                         $('#modal-info').find('.account-status').html(success.account_status);
+                        $('#modal-info').find('[name=customer_id]').val(success.customer_id);
                         $('#modal-info').modal('show');
                           // alert('Successfully updated!');
                           // window.location.reload();
@@ -241,6 +244,7 @@
                         $('#modal-info').find('.course').html(customer_profile.course);
                         $('#modal-info').find('.year').html(customer_profile.year+'-'+customer_profile.section);
                         $('#modal-info').find('.account-status').html(success.account_status);
+                        $('#modal-info').find('[name=customer_id]').val(success.customer_id);
                         $('#modal-info').modal('show');
                           // alert('Successfully updated!');
                           // window.location.reload();

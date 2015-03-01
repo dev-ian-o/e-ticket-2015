@@ -88,6 +88,20 @@
 
                 <div class="row">
                     <div class="col-xs-12">
+                        <?php $total_payment = 0;?>
+
+                        @if(EventCustomer::where('event_id','=',$id)->count())
+                            <?php $price = Event::where('id','=',$id)->pluck('ticket_price'); ?>
+                            <?php $total_count = EventCustomer::where('event_id','=',$id)->count()?>
+                           @foreach(EventCustomer::where('event_id','=',$id)->get() as $key => $value)
+                                    <?php $total_payment += ($price - $value->balance);?>
+                           @endforeach
+                        @endif
+                        <div class="row">
+                            <button class="btn btn-primary btn-lg pull-right">Overall Total: {{ (($total_count*$price)) }}</button>&nbsp;
+                            <button class="btn btn-danger btn-lg pull-right">Total Not Paid: {{ (($total_count*$price) - $total_payment) }}</button>&nbsp; 
+                            <button class="btn btn-success btn-lg pull-right">Total Paid: {{ $total_payment }}</button><br>
+                        </div>
                         <div class="panel panel-default">
                                 <!-- START DEFAULT DATATABLE -->
                                 <div class="panel panel-default">
@@ -96,6 +110,7 @@
                                         <ul class="panel-controls">
                                             <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                             <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                                            <li><a href="/admin/report/{{$id}}" class=""><span class="fa fa-print"></span></a></li>
                                         </ul>                                
                                     </div>
 

@@ -38,7 +38,7 @@
                 <a href="/admin/user-group"><span class="fa fa-users"></span> <span class="xn-text">Users Group</span></a>
             </li>                    
             <li>
-                <a href="/admin/customers"><span class="fa fa-users"></span> <span class="xn-text">Customers</span></a>
+                <a href="/admin/customers"><span class="fa fa-child"></span> <span class="xn-text">Customers</span></a>
             </li>                    
             <li>
                 <a href="/admin/tickets"><span class="fa fa-ticket"></span> <span class="xn-text">Tickets</span></a>

@@ -88,7 +88,9 @@
                 <h3>Event: {{Event::where('id','=',$id)->pluck('title')}}</h3>
                 <div class="content-frame">   
                     <!-- START CONTENT FRAME BODY -->    
-
+                    <div class="row">
+                        <a href="/admin/print/{{$id}}" class="btn btn-success pull-right"><i class="fa fa-print"></i> Print</a>
+                    </div>
                     <div class="gallery" id="links">
 
                         @foreach(Ticket::where('event_id','=',$id)->get() as $key => $value)
