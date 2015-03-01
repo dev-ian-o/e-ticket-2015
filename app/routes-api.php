@@ -43,7 +43,21 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('/events', 		function(){ return View::make('admin.events'); })->before('auth');
 	Route::get('/design', 		function(){ return View::make('admin.design'); })->before('auth');
 	Route::get('/registration', function(){ return View::make('admin.registration'); })->before('auth');
-	Route::get('/accounting', 	function(){ return View::make('admin.accounting'); })->before('auth');
+	Route::get('/registration/{id}', 	function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.registration', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/registration'); 
+	})->before('auth');	
+	Route::get('/accounting', function(){ return View::make('admin.accounting'); })->before('auth');
+	Route::get('/accounting/{id}', 	function($id){ 
+		$event = Event::where('id','=', $id)->get();
+		if(isset($event[0]))
+			return View::make('admin.accounting', array('id' => $id)); 
+		else
+			return Redirect::to('/admin/accounting'); 
+	})->before('auth');
 	Route::get('/add/design', 	function(){ return View::make('admin.design-add'); })->before('auth');
 	
 	Route::get('/design/{id}', 		function($id){ 

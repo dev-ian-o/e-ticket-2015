@@ -31,6 +31,7 @@
                         </select>   
                     </div>
                 </div>    
+                  
                 <div class="form-group">
                     <label class="col-md-3 control-label">Year:</label>
                     <div class="col-md-9">
@@ -49,11 +50,11 @@
                     <div class="col-md-9">
                         <select class="form-control" name="section">
                             <option value="none">none</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="4">D</option>
-                            <option value="5">E</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
                         </select>   
                     </div>
                 </div>    
@@ -62,13 +63,13 @@
                     <div class="col-md-9">
                         <select class="form-control" name="course">
                             <option value="none">none</option>
-                            <option value="none">others</option>
-                            <option value="1">ITSM</option>
-                            <option value="2">CNA</option>
-                            <option value="3">CSAD</option>
+                            <option value="others">others</option>
+                            <option value="ITSM">ITSM</option>
+                            <option value="CNA">CNA</option>
+                            <option value="CSAD">CSAD</option>
                         </select>   
                     </div>
-                </div>    
+                </div>     
                 <div class="form-group">
                     <label class="col-md-3 control-label">Work:</label>
                     <div class="col-md-9">

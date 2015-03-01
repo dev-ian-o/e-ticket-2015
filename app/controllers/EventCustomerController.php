@@ -15,7 +15,30 @@ class EventCustomerController extends \BaseController {
  //        ->select('*','events.id','events.deleted_at','events.created_at','events.updated_at')
  //        ->get();
 	// 	return Response::json($events);
-		return Response::json(EventCustomer::get());
+		// return Response::json(EventCustomer::get());
+		$price = EventCustomer::where('customer_id','=',Request::get('customer_id'))
+				->where('event_id','=',Request::get('event_id'))->pluck('balance');
+		if(Request::get('balance') <= $price && Request::get('balance') > 0){
+
+			$event_customer = EventCustomer::where('customer_id','=',Request::get('customer_id'))
+				->where('event_id','=',Request::get('event_id'))->first();
+			$balance =  ($event_customer->balance - ((float)Request::get('balance')));
+			if($balance == 0)
+				$account_status = "paid"; 
+			else if(Request::get('balance') < $event_customer->balance)
+				$account_status = "paid with balance";
+			else 
+				$account_status = "not paid";
+
+			$event_customer->balance = $balance;
+			$event_customer->account_status = $account_status;
+			$event_customer->save();
+			return Response::json(array('success'=>true));
+		}
+		else{
+			return Response::json(array('success'=>false));
+		}
+
 
 	}
 
@@ -94,7 +117,9 @@ class EventCustomerController extends \BaseController {
 		}
 		else // remove
 		{
-			EventCustomer::where('customer_id','=',Request::get('customer_id'))->delete();
+			EventCustomer::where('customer_id','=',Request::get('customer_id'))
+					->where('event_id','=',Request::get('event_id'))
+					->delete();
 			return Response::json(array(
 				'success' => true,
 				'ticket_no' => '-',
@@ -161,11 +186,24 @@ class EventCustomerController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$event = EventCustomer::find($id);
-		$event->deleted_at = date('Y-m-d h:m:s');
-		$event->save();
-		// return Redirect::to('admin/users');
-		return Response::json(array('success'=> true));
+		// $event = EventCustomer::find($id);
+		// $event->deleted_at = date('Y-m-d h:m:s');
+		// $event->save();
+		// // return Redirect::to('admin/users');
+		$event_customer = EventCustomer::where('event_id','=',Request::get('event_id'))
+						->where('ticket_no','=',Request::get('ticket_no'))->get();
+		if(isset($event_customer[0]))
+			$customer_profile = Customer::where('id','=',$event_customer[0]->customer_id)->get();
+		else{
+			$customer_profile = null;
+			$event_customer = null;
+		}
+
+		return Response::json(array(
+			'success'=> $event_customer,
+			'customer_profile'=> $customer_profile,
+		));
+
 	}
 
 
